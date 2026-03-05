@@ -46,13 +46,22 @@ SAST tools catch what their ruleset covers. The scan caught the SQL injection as
 ---
 
 ## Screenshots
+
 ### SAST findings in job log
 
 ![Job-log](./screenshots/job-log.png)
 
-### Download SAST report location
+### How to Download and Read the SAST Report
+
+After the pipeline runs, GitLab generates a security report you can download:
+
+1. Click into the **semgrep-sast** job
+2. On the right side you will see a **Job artifacts** panel
+3. Click **"Download SAST report"**
 
 ![SAST-Report](./screenshots/sast-report.png)
+
+This downloads a file called `gl-sast-report.json`. Open it in any text editor or code editor. Look for the `vulnerabilities` section to see what was found:
 
 ```json
 {
@@ -62,6 +71,9 @@ SAST tools catch what their ruleset covers. The scan caught the SQL injection as
   "location": {"file": "vulnerable_app.py", "start_line": 8}
 }
 ```
+
+> 💡 This tells you **what** the vulnerability is, **how severe** it is, 
+> **which tool** found it, and **exactly where** it lives in your code.
 
 ---
 
