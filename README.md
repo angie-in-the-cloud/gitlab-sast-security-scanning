@@ -31,7 +31,7 @@ Extends the [compliance pipeline](https://github.com/angie0120/gitlab-compliance
 ---
 
 ### Key Takeaway
-SAST tools catch what their ruleset covers. The scan caught the SQL injection as a High severity finding mapped to OWASP A03:2021, but missed the hardcoded credential which is a realistic reminder that no single tool catches everything, and layered security controls are essential.
+SAST tools catch what their ruleset covers. The scan caught the SQL injection as a High severity finding mapped to OWASP A03:2021, but missed the hardcoded credential, which is a realistic reminder that no single tool catches everything, and layered security controls are essential.
 
 ---
 
