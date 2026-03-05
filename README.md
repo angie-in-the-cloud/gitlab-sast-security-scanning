@@ -54,6 +54,15 @@ SAST tools catch what their ruleset covers. The scan caught the SQL injection as
 
 ![SAST-Report](./screenshots/sast-report.png)
 
+```json
+{
+  "name": "Improper neutralization of special elements used in an SQL Command ('SQL Injection')",
+  "severity": "High",
+  "scanner": {"id": "semgrep", "name": "Semgrep"},
+  "location": {"file": "vulnerable_app.py", "start_line": 8}
+}
+```
+
 ---
 
 ## How to Replicate this Project
