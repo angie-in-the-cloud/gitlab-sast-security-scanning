@@ -48,10 +48,10 @@ SAST tools catch what their ruleset covers. The scan caught the SQL injection as
 ## Screenshots
 ### SAST findings in job log
 
-![Job-log](./screenshots/job-log.PNG)
+![Job-log](./screenshots/job-log.png)
 
 ### Download SAST report location
 
-![SAST-Report](./screenshots/sast-report.PNG)
+![SAST-Report](./screenshots/sast-report.png)
 
 ---
