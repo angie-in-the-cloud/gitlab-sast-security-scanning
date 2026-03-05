@@ -130,3 +130,6 @@ Commit to **main**
 - Notice the hardcoded credential was **not** flagged, which is a realistic reminder that no single tool catches everything
 
 </details>
+
+---
+
