@@ -1,0 +1,31 @@
+# compliance pipeline
+
+stages:
+  - validate
+  - test
+  - report
+  - sast 
+
+validate-controls:
+  stage: validate
+  image: python:3.11
+  script:
+    - echo "Starting compliance validation..."
+    - python compliance_check.py
+
+run-tests:
+  stage: test
+  image: python:3.11
+  script:
+    - echo "Running pipeline self-check..."
+    - python --version
+    - echo "Pipeline test stage complete."
+
+generate-report:
+  stage: report
+  script:
+    - echo "Compliance pipeline completed successfully."
+    - echo "Report timestamp:" $(date)
+
+include:
+  - template: Security/SAST.gitlab-ci.yml
