@@ -55,3 +55,57 @@ SAST tools catch what their ruleset covers. The scan caught the SQL injection as
 ![SAST-Report](./screenshots/sast-report.png)
 
 ---
+
+## How to Replicate this Project
+
+<details>
+<summary>Steps to Replicate This Project</summary>
+
+### Prerequisites
+- Complete the [GitLab Compliance Pipeline](https://github.com/angie0120/gitlab-compliance-pipeline) project or have a basic GitLab project with a `.gitlab-ci.yml` already set up
+- A free GitLab account (sign up at gitlab.com)
+
+### Step 1 — Add the vulnerable app file
+1. Open your project in the **GitLab Web IDE**
+2. Right-click in the file explorer on the left
+3. Select **"New file"**
+4. Name it `vulnerable_app.py`
+5. Paste the code from [vulnerable_app.py](./vulnerable_app.py)
+6. Click **"Commit"** → commit to **main**
+
+### Step 2 — Update the pipeline file
+Open `.gitlab-ci.yml` and make two edits:
+
+Add `- sast` to your stages list:
+```yaml
+stages:
+  - validate
+  - test
+  - report
+  - sast
+```
+
+Add this block at the very bottom of the file:
+```yaml
+include:
+  - template: Security/SAST.gitlab-ci.yml
+```
+Commit to **main**
+
+### Step 3 — Watch the pipeline run
+1. In the left sidebar, click **"Build"** → **"Pipelines"**
+2. You should see a pipeline triggered automatically with 4 stages
+3. All stages should pass ✅
+4. The `semgrep-sast` job will scan your Python files automatically
+
+### Step 4 — View the SAST report
+1. Click into the completed pipeline
+2. Click the **semgrep-sast** job
+3. On the right side under **Job artifacts**, click **"Download SAST report"**
+4. Open `gl-sast-report.json` to see full vulnerability details including severity, file location, and OWASP mapping
+
+### Step 5 — Interpret the findings
+- The SQL injection in `vulnerable_app.py` line 8 should be flagged as **High severity**
+- Notice the hardcoded credential was **not** flagged, which is a realistic reminder that no single tool catches everything
+
+</details>
